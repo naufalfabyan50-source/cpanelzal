@@ -391,14 +391,17 @@ async function verifyAccess() {
 
     catch (error) {
 
-        console.error(
-            "AUTH ERROR:",
-            error
-        );
+    alert(
+        "AUTH ERROR:\n" +
+        error.message
+    );
 
-        showAccessDenied();
+    console.error(
+        "AUTH ERROR:",
+        error
+    );
 
-    }
+    showAccessDenied();
 
 }
 
