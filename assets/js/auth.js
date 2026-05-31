@@ -334,7 +334,25 @@ VERIFY ACCESS
 
 async function verifyAccess() {
 
-    try {
+     try {
+
+        alert("1. Start verifyAccess");
+
+        setLoadingText("Checking IP...");
+        const ip = await getPublicIP();
+        alert("2. IP: " + ip);
+
+        setLoadingText("Checking Access...");
+        const accessList = await getAccessDatabase();
+        alert("3. Access list loaded: " + JSON.stringify(accessList));
+
+        const user = accessList.find(item => item.ip === ip);
+        alert("4. User found: " + JSON.stringify(user));
+
+        if (!user) {
+            showAccessDenied();
+            return;
+        }
 
         setLoadingText(
             "Checking IP..."
@@ -395,17 +413,19 @@ async function verifyAccess() {
 
     catch (error) {
 
-    alert(
-        "AUTH ERROR:\n" +
-        error.message
-    );
+        alert(
+            "AUTH ERROR:\n" +
+            error.message
+        );
 
-    console.error(
-        "AUTH ERROR:",
-        error
-    );
+        console.error(
+            "AUTH ERROR:",
+            error
+        );
 
-    showAccessDenied();
+        showAccessDenied();
+
+    }
 
 }
 
@@ -419,4 +439,3 @@ window.addEventListener("load", async () => {
     await loadConfig();
     await verifyAccess();
 });
-);
