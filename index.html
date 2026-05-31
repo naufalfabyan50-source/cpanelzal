@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel Management</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<!-- LOADING -->
+
+<div id="loading-screen">
+
+    <div class="loader"></div>
+
+    <h2>Verifying Access...</h2>
+
+    <p id="loading-text">
+        Checking IP...
+    </p>
+
+</div>
+
+<!-- ACCESS DENIED -->
+
+<div id="access-denied" class="hidden">
+
+    <div class="denied-box">
+
+        <h1>❌ AKSES DITOLAK</h1>
+
+        <p>
+            IP Anda Tidak Terdaftar
+        </p>
+
+        <small>
+            Hubungi Administrator
+        </small>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div id="toast-container"></div>
+
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+    <!-- MOBILE TOPBAR -->
+
+    <header id="mobile-header">
+
+        <button id="menu-toggle">
+
+            ☰
+
+        </button>
+
+        <span>
+
+            PANEL MANAGEMENT
+
+        </span>
+
+    </header>
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar">
+
+        <div class="logo">
+
+            <h2>
+                PANEL
+            </h2>
+
+            <small>
+                MANAGEMENT
+            </small>
+
+        </div>
+
+        <nav id="sidebar-menu">
+
+        </nav>
+
+    </aside>
+
+    <!-- OVERLAY -->
+
+    <div id="sidebar-overlay"></div>
+
+    <!-- CONTENT -->
+
+    <main id="content">
+
+        <!-- DASHBOARD -->
+
+        <section
+        id="dashboard-page"
+        class="page active-page">
+
+            <div class="page-header">
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+            <div class="dashboard-cards">
+
+                <div class="card">
+
+                    <h3>Total VPS</h3>
+
+                    <span id="total-vps">
+
+                        0
+
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Total User</h3>
+
+                    <span id="total-user">
+
+                        0
+
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Total Panel</h3>
+
+                    <span id="total-panel">
+
+                        0
+
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Activity Today</h3>
+
+                    <span id="activity-today">
+
+                        0
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CREATE PANEL -->
+
+        <section
+        id="panel-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    Create Panel
+                </h1>
+
+            </div>
+
+            <div class="form-card">
+
+                <form id="create-panel-form">
+
+                    <input
+                    type="text"
+                    id="panel-username"
+                    placeholder="Username"
+                    required>
+
+                    <input
+                    type="password"
+                    id="panel-password"
+                    placeholder="Password"
+                    required>
+
+                    <select id="panel-storage">
+
+                        <option>1 GB</option>
+                        <option>2 GB</option>
+                        <option>3 GB</option>
+                        <option>4 GB</option>
+                        <option>5 GB</option>
+                        <option>6 GB</option>
+                        <option>7 GB</option>
+                        <option>8 GB</option>
+                        <option>9 GB</option>
+                        <option>10 GB</option>
+                        <option>Unlimited</option>
+
+                    </select>
+
+                    <select id="panel-server">
+
+                    </select>
+
+                    <button
+                    type="submit">
+
+                        CREATE PANEL
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div id="panel-result">
+
+            </div>
+
+        </section>
+
+        <!-- VPS -->
+
+        <section
+        id="vps-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    VPS Management
+                </h1>
+
+            </div>
+
+            <div class="form-card">
+
+                <form id="vps-form">
+
+                    <input
+                    type="text"
+                    id="server-name"
+                    placeholder="Nama Server">
+
+                    <input
+                    type="text"
+                    id="server-domain"
+                    placeholder="Hostname / Domain">
+
+                    <input
+                    type="text"
+                    id="server-plta"
+                    placeholder="PLTA">
+
+                    <input
+                    type="text"
+                    id="server-pltc"
+                    placeholder="PLTC">
+
+                    <select
+                    id="server-status">
+
+                        <option>
+                            Aktif
+                        </option>
+
+                        <option>
+                            Nonaktif
+                        </option>
+
+                    </select>
+
+                    <button
+                    type="submit">
+
+                        Simpan VPS
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div
+            id="server-list">
+
+            </div>
+
+        </section>
+
+        <!-- ACCESS -->
+
+        <section
+        id="access-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    Add IP Access
+                </h1>
+
+            </div>
+
+            <div class="form-card">
+
+                <form id="access-form">
+
+                    <input
+                    type="text"
+                    id="access-ip"
+                    placeholder="IP Address">
+
+                    <select
+                    id="access-role">
+
+                        <option>
+                            Super Admin
+                        </option>
+
+                        <option>
+                            Admin
+                        </option>
+
+                        <option>
+                            User
+                        </option>
+
+                    </select>
+
+                    <button
+                    type="submit">
+
+                        Tambahkan
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div
+            id="access-list">
+
+            </div>
+
+        </section>
+
+        <!-- USERS -->
+
+        <section
+        id="users-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    User Management
+                </h1>
+
+            </div>
+
+            <div
+            id="user-list">
+
+            </div>
+
+        </section>
+
+        <!-- LOGS -->
+
+        <section
+        id="logs-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    Activity Log
+                </h1>
+
+            </div>
+
+            <table
+            class="log-table">
+
+                <thead>
+
+                <tr>
+
+                  <th>Waktu</th>
+
+                  <th>Action</th>
+
+                  <th>Target</th>
+
+                  <th>IP</th>
+
+                  <th>Role</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody
+                id="logs-body">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- GITHUB CONFIG -->
+
+        <section
+        id="github-page"
+        class="page">
+
+            <div class="page-header">
+
+                <h1>
+                    Github Configuration
+                </h1>
+
+            </div>
+
+            <div class="form-card">
+
+                <form
+                id="github-form">
+
+                    <input
+                    type="text"
+                    id="github-username"
+                    placeholder="Github Username">
+
+                    <input
+                    type="text"
+                    id="github-repository"
+                    placeholder="Repository">
+
+                    <input
+                    type="text"
+                    id="github-branch"
+                    placeholder="Branch">
+
+                    <input
+                    type="password"
+                    id="github-token"
+                    placeholder="Github Personal Access Token">
+
+                    <button
+                    type="button"
+                    id="show-token">
+
+                        👁 Show Token
+
+                    </button>
+
+                    <button
+                    type="submit">
+
+                        Simpan Konfigurasi
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="warning-box">
+
+                ⚠️ Jangan sebarkan domain login ke publik.
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/github.js"></script>
+<script src="assets/js/database.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/vps.js"></script>
+<script src="assets/js/access.js"></script>
+<script src="assets/js/panel.js"></script>
+<script src="assets/js/logs.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
