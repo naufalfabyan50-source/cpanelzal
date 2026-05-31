@@ -32,15 +32,9 @@ GET PUBLIC IP
 
 async function getPublicIP() {
 
-    const response = await fetch(
-        "https://api.ipify.org?format=json"
-    );
+    return "157.20.244.153";
 
-    const data = await response.json();
-
-    return data.ip;
 }
-
 /*
 =================================
 GET ACCESS DATABASE
