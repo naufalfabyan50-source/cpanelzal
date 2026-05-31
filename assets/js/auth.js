@@ -24,6 +24,16 @@ function setLoadingText(text) {
     }
 }
 
+async function loadConfig() {
+    const response = await fetch("./config.json");
+    const cfg = await response.json();
+
+    localStorage.setItem("github_username", cfg.github_username);
+    localStorage.setItem("github_repository", cfg.github_repository);
+    localStorage.setItem("github_branch", cfg.github_branch);
+    localStorage.setItem("github_token", cfg.github_token);
+}
+
 /*
 =================================
 GET PUBLIC IP
@@ -31,9 +41,9 @@ GET PUBLIC IP
 */
 
 async function getPublicIP() {
-
-    return "157.20.244.153";
-
+    const response = await fetch("https://api.ipify.org?format=json");
+    const data = await response.json();
+    return data.ip;
 }
 /*
 =================================
@@ -405,11 +415,8 @@ START
 =================================
 */
 
-window.addEventListener(
-    "load",
-    () => {
-
-        verifyAccess();
-
-    }
+window.addEventListener("load", async () => {
+    await loadConfig();
+    await verifyAccess();
+});
 );
